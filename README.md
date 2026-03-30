@@ -199,6 +199,19 @@ pip install torch --index-url https://download.pytorch.org/whl/cu128
 - [QJL Reference Implementation](https://github.com/amirzandieh/QJL) — Original CUDA implementation by the QJL authors
 - [PolarQuant Reference Implementation](https://github.com/ericshwu/PolarQuant)
 
+## Community Work
+
+Several community members have extended this implementation with valuable findings:
+
+- **[scos-lab/turboquant](https://github.com/scos-lab/turboquant)** — 8-model benchmark showing K/V norm ratio predicts compression quality. Found MSE-only outperforms MSE+QJL for attention (softmax amplifies QJL variance). Outlier-aware mixed precision achieves 3.6-bit avg with +2.1% PPL on Qwen2.5-1.5B.
+- **[SCJedi/entropy-adaptive-kv-cache](https://github.com/SCJedi/entropy-adaptive-kv-cache)** — Combines TurboQuant with entropy-adaptive token eviction for 12x compression with zero quality loss on Qwen3.5-4B. The two techniques are orthogonal (what to keep vs how to store it) and stack effectively.
+
+### Key community findings
+
+- **MSE-only beats MSE+QJL for attention in practice** ([#10](https://github.com/tonbistudio/turboquant-pytorch/issues/10), [#8](https://github.com/tonbistudio/turboquant-pytorch/issues/8)) — QJL correction is mathematically unbiased for raw inner products, but softmax amplifies the variance. MSE-only has biased inner products but lower variance, and lower variance wins after softmax.
+- **Q4_0 beats TurboQuant at similar compression ratios** ([#6](https://github.com/tonbistudio/turboquant-pytorch/issues/6)) — At ~3.6-3.8x, simple block quantization (Q4_0) achieves 0.9994 cosine sim vs TurboQuant's 0.9983. TurboQuant's advantage is at higher compression (3-bit/5x and 2-bit/7x) where block methods can't go.
+- **K/V norm asymmetry matters** ([#8](https://github.com/tonbistudio/turboquant-pytorch/issues/8)) — Qwen models have key norms of 172-778 vs value norms of 2-4. Normalization before quantization is essential (our initial implementation without it had 133% reconstruction error).
+
 ## License
 
 MIT
