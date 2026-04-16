@@ -199,3 +199,9 @@ Several community members have extended this implementation with valuable findin
 ## License
 
 MIT
+
+## Related Notes
+
+<!-- related-notes:start -->
+- [[turboquant-pytorch/TURBOQUANT-PYTORCH-INDEX]]
+<!-- related-notes:end -->

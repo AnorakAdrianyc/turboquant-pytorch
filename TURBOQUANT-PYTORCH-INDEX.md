@@ -47,3 +47,10 @@ Project: turboquant-pytorch · Field: Deep Learning · Model Quantization · PyT
 | Model Checkpointing | [[OS-INDEX]] (file systems) |
 | Embedding Models | [[TURBOQUANT-RAG-INDEX]] (vector search) |
 | Backpropagation Engine | [[ML-INDEX]] (gradient computation) |
+
+## Related Notes
+
+<!-- related-notes:start -->
+- [[turboquant-pytorch/README]]
+- [[README]]
+<!-- related-notes:end -->

@@ -18,3 +18,9 @@ This folder stores project resources for turboquant-pytorch.
 - turboquant.py
 - TURBOQUANT-PYTORCH-INDEX.md
 - validate.py
+
+## Related Notes
+
+<!-- related-notes:start -->
+- [[00-Obsidian-Notes/project/antigravity-awesome-skills/FOLDER-SUMMARY]]
+<!-- related-notes:end -->
